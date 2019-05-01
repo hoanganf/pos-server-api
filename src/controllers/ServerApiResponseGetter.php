@@ -1,15 +1,18 @@
 <?php
 	class ServerApiResponseGetter extends ResponseGetter{
 		public function buildResponse($pageId,$request){
-			switch ($request->pageId) {
+			switch ($pageId) {
 	      case 'product':
 	        $responseBuilder=new ProductResponseBuilder();
 	        break;
+				case 'ingredient':
+	        $responseBuilder=new IngredientResponseBuilder();
+	        break;
 	      default:
-	        $responseBuilder=new ProductResponseBuilder();
-
+					echo ServerApiResponseGetter::createResponse('false',E_BAD_REQUEST,'BAD REQUEST');
+	        return;
 	    }
-	    echo $responseBuilder->build($request);
+	    $responseBuilder->build($request);
 		}
 	}
 ?>
