@@ -1,5 +1,5 @@
 <?php
-	class ServerApiResponseGetter extends ResponseGetter{
+	class ApiResponseGetter extends ResponseGetter{
 		public function buildResponse($pageId,$request){
 			switch ($pageId) {
 	      case 'product':
@@ -18,7 +18,7 @@
 	        $responseBuilder=new RestaurantIngredientResponseBuilder();
 	        break;
 	      default:
-					return ServerApiResponseGetter::createResponse('false',E_BAD_REQUEST,'BAD REQUEST');
+					return self::createResponse('false',E_BAD_REQUEST,'BAD REQUEST');
 	    }
 	    return $responseBuilder->build($request);
 		}

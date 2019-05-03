@@ -12,7 +12,7 @@
 					}
 				}
 				if(!empty($products)) return json_encode(array('status'=>true,'code'=>SUCCEED,'products'=>$products));
-				else return ServerApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
+				else return ApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
 			}else if(isset($_GET['productId']) && is_numeric($_GET['productId'])){
 				$product=$adapter->getProduct($_GET['productId']);
 				if($product!==null){
@@ -21,7 +21,7 @@
 					}
 					return json_encode(array('status'=>true,'code'=>SUCCEED,'product'=>$product));
 				}
-				else return ServerApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
+				else return ApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
 			}else{
 				$products=$adapter->getAll();
 				if(isset($_GET['detail']) && $_GET['detail'] ==='ingredient'){
@@ -30,7 +30,7 @@
 					}
 				}
 				if(!empty($products)) return json_encode(array('status'=>true,'code'=>SUCCEED,'products'=>$products));
-				else return ServerApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
+				else return ApiResponseGetter::createResponse('false',E_NO_PRODUCT,'NO PRODUCT');
 			}
 		}
 	}

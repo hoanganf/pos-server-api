@@ -7,9 +7,9 @@
 				if(isset($_GET['productId']) && is_numeric($_GET['productId'])){
 					$result=$productIngredientDAO->getAllIngredientByProductId($_GET['productId']);
 					if(!empty($result)) return json_encode(array('status'=>true,'code'=>SUCCEED,'productRecipes'=>$result));
-					else return ServerApiResponseGetter::createResponse('false',E_NO_PRODUCT_RECIPE,'NO PRODUCT RECIPE');
+					else return ApiResponseGetter::createResponse('false',E_NO_PRODUCT_RECIPE,'NO PRODUCT RECIPE');
 				}else{
-				 	return ServerApiResponseGetter::createResponse('false',E_BAD_REQUEST,'NO PRODUCT ID INPUT');
+				 	return ApiResponseGetter::createResponse('false',E_BAD_REQUEST,'NO PRODUCT ID INPUT');
 				}
 			}else{
 				$request->body=json_decode(file_get_contents("php://input"));
@@ -47,7 +47,7 @@
 				}else{
 					 $productIngredientDAO->commit();
 					 $productIngredientDAO->close();
-					 return ServerApiResponseGetter::createResponse("true",SUCCEED,count($request->body->ingredients));
+					 return ApiResponseGetter::createResponse("true",SUCCEED,count($request->body->ingredients));
 				}
 			}
 		}
@@ -56,7 +56,7 @@
 			$dao->rollBack();
 			/* close connection */
 			$dao->close();
-			return ServerApiResponseGetter::createResponse("false",E_MYSQL_QUERY_FAIL,$message);
+			return ApiResponseGetter::createResponse("false",E_MYSQL_QUERY_FAIL,$message);
 		}
 	}
 ?>
