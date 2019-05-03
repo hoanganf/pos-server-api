@@ -5,14 +5,22 @@
 	      case 'product':
 	        $responseBuilder=new ProductResponseBuilder();
 	        break;
+				case 'productRecipe':
+	        $responseBuilder=new ProductRecipeResponseBuilder();
+	        break;
+				case 'restaurantProduct':
+	        $responseBuilder=new RestaurantProductResponseBuilder();
+	        break;
 				case 'ingredient':
 	        $responseBuilder=new IngredientResponseBuilder();
 	        break;
+				case 'restaurantIngredient':
+	        $responseBuilder=new RestaurantIngredientResponseBuilder();
+	        break;
 	      default:
-					echo ServerApiResponseGetter::createResponse('false',E_BAD_REQUEST,'BAD REQUEST');
-	        return;
+					return ServerApiResponseGetter::createResponse('false',E_BAD_REQUEST,'BAD REQUEST');
 	    }
-	    $responseBuilder->build($request);
+	    return $responseBuilder->build($request);
 		}
 	}
 ?>

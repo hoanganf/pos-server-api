@@ -29,7 +29,11 @@ class IngredientDAO extends BaseDAO{
   }
 
   function getIngredientsByCategoryId($cateId){
-    return $this->getAllWhere('category_id='.$cateId);
+    return $this->getAllQuery('SELECT i.*, u.name as unit_name FROM '.$this->getTableName().' i LEFT JOIN unit u ON u.id=i.unit_id WHERE category_id='.$cateId);
+  }
+
+  function getAll($host = NULL, $userName = NULL, $password = NULL, $database = NULL){
+    return $this->getAllQuery('SELECT i.*, u.name as unit_name FROM '.$this->getTableName().' i LEFT JOIN unit u ON u.id=i.unit_id');
   }
 }
 ?>
